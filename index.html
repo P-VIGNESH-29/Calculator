@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    
+        <div class="h-[500px] w-96 bg-gray-950 rounded-2xl relative left-[550px] top-[100px]">
+            <span class="title text-amber-50 text-3xl font-bold relative left-14 top-4">IOS CALCULATOR</span>
+
+            <h2 name="output"  class="w-[350px] h-[100px] bg-[#333333] text-amber-50 rounded-2xl relative top-10 left-5 pt-8 pl-[190px] font-bold text-7xl"  id="area"></h2>
+            <div class="buttons grid grid-cols-4 grid-rows-5 relative left-5 top-6">
+            <button class="bg-amber-50 rounded-[20px] m-1 mt-7 h-10 w-50 col-span-2" onclick="res()">Click</button>
+            <button class="bg-amber-50 rounded-[20px] m-1 mt-7 h-10 w-13" onclick="cl()" >Clear</button>
+            <button  id="add" class="bg-[#FF9601] rounded-[100%] m-1 mt-7 h-10 w-10" onclick="cal('+')">+</button>
+            <button  id="1"  value=1 class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10" onclick="setnum(1)" >1</button>
+            <button  id="2"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10 " onclick="setnum(2)" >2</button>
+            <button  id="3"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10"onclick="setnum(3)" >3</button>
+            <button  id=""    class="bg-[#FF9601] rounded-[100%] m-1 mt-7 h-10 w-10" onclick="cal('-')" >-</button>
+            <button  id="4"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10"onclick="setnum(4)" >4</button>
+            <button  id="5"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10" onclick="setnum(5)" >5</button>
+            <button  id="6"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10" onclick="setnum(6)">6</button>
+            <button  id=""    class="bg-[#FF9601] rounded-[100%] m-1 mt-7 h-10 w-10" onclick="cal('x')">x</button>
+            <button  id="7"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10" onclick="setnum(7)" >7</button>
+            <button  id="8"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10" onclick="setnum(8)" >8</button>
+            <button  id="9"   class="bg-amber-50 rounded-[100%] m-1 mt-7 h-10 w-10" onclick="setnum(9)">9</button>
+            <button  id="1"   class="bg-[#FF9601] rounded-[100%] m-1 mt-7 h-10 w-10"  onclick="cal('%')">%</button>
+            
+        </div>
+
+        <script>
+
+            fnum=null
+            snum=null
+            resnum=0
+            calv=null
+            function cl(){
+                area.textContent=''
+                fnum=null
+                snum=null
+                resnum=0
+                calv=null
+            }
+
+            function res(){
+                switch (calv) {
+                    case '+':
+                        add()
+            
+                    
+                        break;
+                    case '-':
+                        sub()
+                        break;
+                    case 'x':
+                        mul()
+                        break;
+                    case '%':
+                        div()
+                        break;
+            
+                    default:
+                        break;
+            } 
+            }
+
+            function cal(val){
+                calv=val
+                console.log(val)
+                area.innerText=`${fnum}${val}`
+            }
+
+            function setnum(val){
+                if (fnum==null){
+                    fnum=val
+                    console.log(fnum)
+                    area.innerText=`${fnum}`
+                }else{
+                    if (calv==null){
+                        area.innerHTML='Error'
+                        
+                    }else{
+                        snum=val
+                    console.log(snum)
+                    area.innerText=`${fnum}${calv}${snum}`
+                    }
+                    
+                }
+            }
+            let area=document.getElementById('area')
+            
+            
+            
+            function add(){
+                resnum=fnum+snum
+                area.innerText=resnum
+                }
+            function sub(){
+                resnum=fnum-snum
+                area.innerText=resnum
+                }
+            function mul(){
+                resnum=fnum*snum
+                area.innerText=resnum
+                }
+            function div(){
+                resnum=fnum%snum
+                area.innerText=resnum
+                }
+
+            
+        </script>
+
+</body>
+</html>
