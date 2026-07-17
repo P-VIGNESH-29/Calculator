@@ -1,2 +1,115 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top right, #fef08a, #f1f5f9, #dbeafe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Floating background glow elements (pastel light theme versions) */
+.glow-bg {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite alternate;
+}
+
+.glow-bg-2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, rgba(236, 72, 153, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 25s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+    0% { transform: translate(-10%, -10%) scale(1); }
+    100% { transform: translate(10%, 10%) scale(1.1); }
+}
+
+/* Glassmorphism calculator card - Light Theme */
+.calc-container {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(100, 116, 139, 0.15),
+                0 0 40px rgba(99, 102, 241, 0.05);
+    z-index: 10;
+}
+
+/* Display screen container with inner shadow/inset and light glass backdrop */
+.display-screen {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dynamic history display classes */
+#history-display {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#history-display.show-history {
+    max-height: 28px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button styles & animations */
+.btn-calc {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.btn-calc::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn-calc:active::after {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 1;
+    transition: 0s;
+}
+
+.btn-calc:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 116, 139, 0.12);
+}
+
+.btn-operator:hover {
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+}
+
+.btn-calc:active {
+    transform: translateY(1px);
+}
